@@ -1,5 +1,8 @@
-import Libro
+import json
 import os
+
+from Libro import Libro
+
 
 class Biblioteca:
     def __init__(self, archivo_persistencia):
@@ -7,18 +10,19 @@ class Biblioteca:
         self.libros = self.cargar_libros()
 
     def cargar_libros(self):
-        libros = []
         if os.path.exists(self.archivo_persistencia):
             with open(self.archivo_persistencia, 'r') as archivo:
-                for linea in archivo:
-                    if linea.strip():
-                        libros.append(Libro.from_string(linea))
-        return libros
+                try:
+                    libros_json = json.load(archivo)
+                    return [Libro.from_dict(libro) for libro in libros_json]
+                except json.JSONDecodeError:
+                    return []
+        return []
 
     def guardar_libros(self):
         with open(self.archivo_persistencia, 'w') as archivo:
-            for libro in self.libros:
-                archivo.write(str(libro) + "\n")
+            libros_json = [libro.to_dict() for libro in self.libros]
+            json.dump(libros_json, archivo, indent=4)
 
     def crear_libro(self, titulo, autor, categoria, anoPublicacion, isbn):
         nuevo_libro = Libro(titulo, autor, categoria, anoPublicacion, isbn)

@@ -1,3 +1,5 @@
+import json
+
 class Libro:
 
     def __init__(self, titulo, autor, categoria, anoPublicacion, isbn):
@@ -7,23 +9,24 @@ class Libro:
         self.anoPublicacion = anoPublicacion
         self.isbn = isbn
 
-
     def __str__(self):
-        return f"Titulo: {self.titulo}, Autor: {self.autor}, Categoria: {self.categoria}, Año: {self.ano_publicacion}, ISBN: {self.isbn}"
+        return f"Titulo: {self.titulo}, Autor: {self.autor}, Categoria: {self.categoria}, Año: {self.anoPublicacion}, ISBN: {self.isbn}"
 
-
-    ##Convertir los datos aun diccionario , no se usa aun ya que nse si se puede usar json
     def to_dict(self):
         return {
             "titulo": self.titulo,
             "autor": self.autor,
             "categoria": self.categoria,
-            "ano_publicacion": self.ano_publicacion,
+            "anoPublicacion": self.anoPublicacion,
             "isbn": self.isbn
         }
 
     @staticmethod
-    def from_string(libro_str):
-
-        campos = libro_str.strip().split(";")
-        return Libro(campos[0], campos[1], campos[2], campos[3], campos[4])
+    def from_dict(libro_dict):
+        return Libro(
+            libro_dict["titulo"], 
+            libro_dict["autor"], 
+            libro_dict["categoria"], 
+            libro_dict["anoPublicacion"], 
+            libro_dict["isbn"]
+        )
