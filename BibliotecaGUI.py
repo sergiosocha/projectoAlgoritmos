@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from tkinter.ttk import Combobox
 from GestionBiblioteca import Biblioteca
+from Arboles import ArbolBinario, ArbolNario, ArbolAVL
 
 
 class BibliotecaGUI:
@@ -73,6 +74,42 @@ class BibliotecaGUI:
 
         self.tree.bind("<<TreeviewSelect>>", self.on_tree_select)
 
+        # IMPLEMENTACIÓN DE ARBOLES
+        self.arbol_almacenamiento = None
+
+        self.label_tipo_almacenamiento = ttk.Label(self.root, text="Tipo de almacenamiento:")
+        self.label_tipo_almacenamiento.grid(row=0, column=2)
+        self.entry_tipo_almacenamiento = Combobox(
+            state="readonly",
+            values=[
+                "Árbol binario por titulo",
+                "Árbol binario por autor",
+                "Árbol n-ario por categoria",
+                "Árbol balanceado por año"
+            ],
+            width=25
+        )
+        self.entry_tipo_almacenamiento.grid(row=1, column=2)
+        self.entry_tipo_almacenamiento.set(self.entry_tipo_almacenamiento['values'][0])
+        self.entry_tipo_almacenamiento.bind("<<ComboboxSelected>>", self.actualizar_arbol)
+        self.actualizar_arbol()
+
+
+    def actualizar_arbol(self, event=None):
+        if self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][0]:
+            self.arbol_almacenamiento = ArbolBinario()
+        elif self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][1]:
+            self.arbol_almacenamiento = ArbolBinario("autor")
+        elif self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][2]:
+            self.arbol_almacenamiento = ArbolNario()
+        elif self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][3]:
+            self.arbol_almacenamiento = ArbolAVL()
+
+        for libro in self.biblioteca.leer_libros():
+            self.arbol_almacenamiento.insertar(libro)
+        
+        self.leer_libros()
+
     def crear_libro(self):
         titulo = self.entry_titulo.get()
         autor = self.entry_autor.get()
@@ -81,7 +118,8 @@ class BibliotecaGUI:
         isbn = self.entry_isbn.get()
 
         if titulo and autor and categoria and ano and isbn:
-            self.biblioteca.crear_libro(titulo, autor, categoria, ano, isbn)
+            self.arbol_almacenamiento.crear_libro(titulo, autor, categoria, ano, isbn)
+            self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
             messagebox.showinfo("Éxito", "Libro creado exitosamente")
             self.limpiar_entradas()
             self.leer_libros()
@@ -93,8 +131,7 @@ class BibliotecaGUI:
         for row in self.tree.get_children():
             self.tree.delete(row)
 
-
-        libros = self.biblioteca.leer_libros()
+        libros = self.arbol_almacenamiento.imprimir()
         for index, libro in enumerate(libros):
             self.tree.insert("", "end", iid=index, values=(libro.titulo, libro.autor, libro.categoria, libro.anoPublicacion, libro.isbn))
 
@@ -108,17 +145,16 @@ class BibliotecaGUI:
 
 
         if self.selected_book_index is not None:
-            libro_seleccionado = self.biblioteca.leer_libros()[self.selected_book_index]
-
-
-            self.biblioteca.actualizar_libro(
+            libro_seleccionado = self.arbol_almacenamiento.imprimir()[self.selected_book_index]
+            self.arbol_almacenamiento.actualizar_libro(
                 isbn=libro_seleccionado.isbn,
                 nuevo_titulo=titulo,
                 nuevo_autor=autor,
                 nueva_categoria=categoria,
                 nuevo_ano_publicacion=ano
             )
-
+            
+            self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
 
             self.leer_libros()
             self.limpiar_entradas()
@@ -131,9 +167,7 @@ class BibliotecaGUI:
         if selected_item:
             self.selected_book_index = int(selected_item[0])
 
-
-            libro = self.biblioteca.leer_libros()[self.selected_book_index]
-
+            libro = self.arbol_almacenamiento.imprimir()[self.selected_book_index]
 
             self.entry_titulo.delete(0, tk.END)
             self.entry_titulo.insert(0, libro.titulo)
@@ -160,7 +194,6 @@ class BibliotecaGUI:
 
     def iniciar(self):
         self.root.mainloop()
-
 
 
 biblioteca = Biblioteca('biblioteca.json')
