@@ -17,6 +17,7 @@ Sistema de gestion de biblioteca, crear un sistema de gestion que permita realiz
 + Implementar un arbol balanceado para almacenar los libros por anio de publicacion. 
 + Implementar un algoritmo de busqueda para encontrar libros por titulo o autor o genero o anio de publicacion.
 + Implementar algoritmos de ordenamiento para ordenar los libros por titulo, autor, genero, anio de publicacion, entre otros. 
-+ Crear un grafo, para representar las relaciones entre libros (autor, genero, etc.)Crear interfaz grafica para interactuar con el sistema. 
++ Crear un grafo, para representar las relaciones entre libros (autor, genero, etc.)
++ Crear interfaz grafica para interactuar con el sistema. 
 + Implementar una estructura de diccionario en el sistema.
 
