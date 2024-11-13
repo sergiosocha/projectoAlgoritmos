@@ -1,72 +1,16 @@
 [
     {
-        "titulo": "1984",
-        "autor": "George Orwell",
-        "categoria": "Distop\u00c3\u00ada",
-        "anoPublicacion": "19490",
-        "isbn": "9780140268867"
+        "titulo": "1231212",
+        "autor": "31233",
+        "categoria": "Fantas\u00eda",
+        "anoPublicacion": "12312",
+        "isbn": "12312"
     },
     {
-        "titulo": "Cien A\u00f1os de Soledad",
-        "autor": "Gabriel Garc\u00eda M\u00e1rquez",
-        "categoria": "Ciencia Ficci\u00c3\u00b3n",
-        "anoPublicacion": "1992",
-        "isbn": "12345gtdrgr"
-    },
-    {
-        "titulo": "Crimen y Castigo",
-        "autor": "Fyodor Dostoevsky",
-        "categoria": "Literatura Cl\u00c3\u00a1sica",
-        "anoPublicacion": "1866",
-        "isbn": "9780140449136"
-    },
-    {
-        "titulo": "El Hobbit",
-        "autor": "J.R.R. Tolkien",
-        "categoria": "Fantas\u00c3\u00ada",
-        "anoPublicacion": "1937",
-        "isbn": "9780547928227"
-    },
-    {
-        "titulo": "El Se\u00f1or de las Moscas",
-        "autor": "William Golding",
-        "categoria": "Ciencia Ficci\u00c3\u00b3n",
-        "anoPublicacion": "1954",
-        "isbn": "546789fsdfa"
-    },
-    {
-        "titulo": "Fahrenheit 451",
-        "autor": "Ray Bradbury",
-        "categoria": "Ciencia Ficci\u00c3\u00b3n",
-        "anoPublicacion": "1953",
-        "isbn": "9781451673319"
-    },
-    {
-        "titulo": "La Sombra del Viento",
-        "autor": "Carlos Ruiz Zaf\u00c3\u00b3n",
-        "categoria": "Misterio",
-        "anoPublicacion": "2001",
-        "isbn": "9780143034902"
-    },
-    {
-        "titulo": "Matar a un Ruise\u00f1or",
-        "autor": "Harper Lee",
-        "categoria": "Ficci\u00c3\u00b3n",
-        "anoPublicacion": "1960",
-        "isbn": "9780060935467"
-    },
-    {
-        "titulo": "Orgullo y Prejuicio",
-        "autor": "Jane Austen",
-        "categoria": "Romance",
-        "anoPublicacion": "1813",
-        "isbn": "9780141439518"
-    },
-    {
-        "titulo": "Una Educaci\u00f3n",
-        "autor": "Tara Westover",
-        "categoria": "Biograf\u00c3\u00ada",
-        "anoPublicacion": "2018",
-        "isbn": "21242fadfsdf"
+        "titulo": "12312",
+        "autor": "123123",
+        "categoria": "Ciencia Ficci\u00f3n",
+        "anoPublicacion": "123",
+        "isbn": "1234556"
     }
 ]

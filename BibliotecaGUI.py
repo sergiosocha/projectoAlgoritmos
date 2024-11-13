@@ -10,9 +10,7 @@ class BibliotecaGUI:
         self.biblioteca = biblioteca
         self.root = tk.Tk()
         self.root.title("Gestión de Biblioteca")
-
         self.selected_book_index = None
-
 
         self.label_titulo = tk.Label(self.root, text="Título:")
         self.label_titulo.grid(row=0, column=0)
@@ -54,6 +52,10 @@ class BibliotecaGUI:
 
         self.btn_actualizar = tk.Button(self.root, text="Actualizar Libro", command=self.actualizar_libro)
         self.btn_actualizar.grid(row=5, column=2)
+
+        self.btn_actualizar = tk.Button(self.root, text="Eliminar Libro", command=self.eliminar_libro)
+        self.btn_actualizar.grid(row=5, column=3)
+
 
 
         self.tree = ttk.Treeview(self.root, columns=("Titulo", "Autor", "Categoria", "Ano", "ISBN"), show="headings")
@@ -126,6 +128,7 @@ class BibliotecaGUI:
         else:
             messagebox.showwarning("Advertencia", "Todos los campos son obligatorios")
 
+
     def leer_libros(self):
 
         for row in self.tree.get_children():
@@ -143,7 +146,6 @@ class BibliotecaGUI:
         ano = self.entry_ano.get()
         isbn = self.entry_isbn.get()
 
-
         if self.selected_book_index is not None:
             libro_seleccionado = self.arbol_almacenamiento.imprimir()[self.selected_book_index]
             self.arbol_almacenamiento.actualizar_libro(
@@ -153,13 +155,14 @@ class BibliotecaGUI:
                 nueva_categoria=categoria,
                 nuevo_ano_publicacion=ano
             )
-            
+
             self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
 
             self.leer_libros()
             self.limpiar_entradas()
         else:
             messagebox.showwarning("Advertencia", "No hay libro seleccionado para actualizar")
+
 
     def on_tree_select(self, event):
 
@@ -182,6 +185,18 @@ class BibliotecaGUI:
 
             self.entry_isbn.delete(0, tk.END)
             self.entry_isbn.insert(0, libro.isbn)
+
+    def eliminar_libro(self):
+        if self.selected_book_isbn:
+            try:
+                self.biblioteca.eliminar_libro(self.selected_book_isbn)
+                messagebox.showinfo("Éxito", "Libro eliminado exitosamente")
+                self.leer_libros()
+                self.limpiar_entradas()
+            except ValueError as e:
+                messagebox.showerror("Error", str(e))
+        else:
+            messagebox.showwarning("Advertencia", "No hay libro seleccionado")
 
     def limpiar_entradas(self):
 
