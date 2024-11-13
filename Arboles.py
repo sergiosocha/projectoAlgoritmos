@@ -82,6 +82,7 @@ class ArbolBinario:
         self.actualizado = False
 
     def actualizar_recursivo(self, nodo, nuevos_datos):
+        # self.imprimir_arbol(self.raiz)
         if nodo is not None:
             if nodo.libro.isbn == nuevos_datos['isbn']:
                 libro_actualizado = Libro(
@@ -91,8 +92,7 @@ class ArbolBinario:
                     nuevos_datos['nuevo_ano_publicacion'] or nodo.libro.anoPublicacion,
                     nodo.libro.isbn
                 )
-
-                self.eliminar_nodo(self.raiz, nodo.libro)
+                self.raiz = self.eliminar_nodo(self.raiz, nodo.libro)
                 self.insertar(libro_actualizado)
 
                 self.actualizado = True
@@ -106,19 +106,40 @@ class ArbolBinario:
     def eliminar_nodo(self, sub_arbol, libro):
         if sub_arbol is None:
             return None
-        elif libro.titulo < sub_arbol.libro.titulo:
-            sub_arbol.izquierda = self.eliminar_nodo(sub_arbol.izquierda, libro)
-        elif libro.titulo > sub_arbol.libro.titulo:
-            sub_arbol.derecha = self.eliminar_nodo(sub_arbol.derecha, libro)
-        else:
-            nodo_eliminar = sub_arbol
-            if nodo_eliminar.derecha is None:
-                sub_arbol = nodo_eliminar.izquierda
-            elif nodo_eliminar.izquierda is None:
-                sub_arbol = nodo_eliminar.derecha
+
+        if self.ordenarPor == "titulo":
+            if libro.titulo < sub_arbol.libro.titulo:
+                sub_arbol.izquierda = self.eliminar_nodo(sub_arbol.izquierda, libro)
+            elif libro.titulo > sub_arbol.libro.titulo:
+                sub_arbol.derecha = self.eliminar_nodo(sub_arbol.derecha, libro)
             else:
-                nodo_eliminar = self.sucesor(nodo_eliminar)
-                nodo_eliminar = None
+                nodo_eliminar = sub_arbol
+                if nodo_eliminar.derecha is None:
+                    sub_arbol = nodo_eliminar.izquierda
+                elif nodo_eliminar.izquierda is None:
+                    sub_arbol = nodo_eliminar.derecha
+                else:
+                    sub_arbol = self.sucesor(nodo_eliminar)
+                    nodo_eliminar = None
+                
+        elif self.ordenarPor == "autor":
+            if libro.autor < sub_arbol.libro.autor:
+                sub_arbol.izquierda = self.eliminar_nodo(sub_arbol.izquierda, libro)
+            elif libro.autor > sub_arbol.libro.autor:
+                sub_arbol.derecha = self.eliminar_nodo(sub_arbol.derecha, libro)
+            else:
+                nodo_eliminar = sub_arbol
+                if nodo_eliminar.derecha is None:
+                    sub_arbol = nodo_eliminar.izquierda
+                elif nodo_eliminar.izquierda is None:
+                    sub_arbol = nodo_eliminar.derecha
+                else:
+                    sub_arbol = self.sucesor(nodo_eliminar)
+                    nodo_eliminar = None
+        
+        else:
+            self.ordenarPor = "titulo"
+            return self.eliminar_nodo(sub_arbol, libro)
         
         return sub_arbol
     
