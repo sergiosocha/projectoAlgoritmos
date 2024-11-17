@@ -71,7 +71,7 @@ class BibliotecaGUI:
         self.tree.column("Ano", width=50)
         self.tree.column("ISBN", width=120)
 
-        self.tree.grid(row=6, column=0, columnspan=3)
+        self.tree.grid(row=6, column=0, columnspan=4)
 
 
         self.tree.bind("<<TreeviewSelect>>", self.on_tree_select)
@@ -81,6 +81,7 @@ class BibliotecaGUI:
 
         self.label_tipo_almacenamiento = ttk.Label(self.root, text="Tipo de almacenamiento:")
         self.label_tipo_almacenamiento.grid(row=0, column=2)
+        
         self.entry_tipo_almacenamiento = Combobox(
             state="readonly",
             values=[
@@ -91,13 +92,55 @@ class BibliotecaGUI:
             ],
             width=25
         )
-        self.entry_tipo_almacenamiento.grid(row=1, column=2)
+        self.entry_tipo_almacenamiento.grid(row=0, column=3)
         self.entry_tipo_almacenamiento.set(self.entry_tipo_almacenamiento['values'][0])
-        self.entry_tipo_almacenamiento.bind("<<ComboboxSelected>>", self.actualizar_arbol)
+        self.entry_tipo_almacenamiento.bind("<<ComboboxSelected>>", lambda event: self.actualizar_arbol())
         self.actualizar_arbol()
 
+        #IMPLEMENTACIÓN DE BUSQUEDA Y ORDENAMIENTO
+        self.label_tipo_busqueda = ttk.Label(self.root, text="Buscar por:")
+        self.label_tipo_busqueda.grid(row=2, column=2)
 
-    def actualizar_arbol(self, event=None):
+        self.tipo_busqueda = tk.StringVar()
+        self.entry_tipo_busqueda = Combobox(
+            textvariable=self.tipo_busqueda,
+            state="readonly",
+            values=[
+                "Titulo",
+                "Autor",
+                "Categoria",
+                "Año de Publicación",
+                "ISBN"
+            ]
+        )
+        self.entry_tipo_busqueda.grid(row=2, column=3)
+        self.entry_tipo_busqueda.set(self.entry_tipo_busqueda['values'][0])
+
+        self.label_busqueda = tk.Label(self.root, text="Libro a buscar:")
+        self.label_busqueda.grid(row=3, column=2)
+
+        self.entry_busqueda = tk.Entry(self.root)
+        self.entry_busqueda.grid(row=3, column=3)
+
+        self.btn_buscar = tk.Button(self.root, text="Buscar", command=self.buscar_libro)
+        self.btn_buscar.grid(row=4, column=2, columnspan=2)
+
+    def buscar_libro(self, event=None):
+        if len(self.entry_busqueda.get()) == 0:
+            self.actualizar_arbol()
+            return
+        
+        coincidencias_encontradas = self.biblioteca.buscar_libro(self.entry_busqueda.get(), self.entry_tipo_busqueda.get())
+
+        if len(coincidencias_encontradas) == 0:
+            messagebox.showinfo("Fracaso", "No se han encontrado coincidencias.")
+        else:
+            self.actualizar_arbol(coincidencias_encontradas)
+
+    def actualizar_arbol(self, libros=None):
+        if libros is None:
+            libros = self.biblioteca.leer_libros()
+
         if self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][0]:
             self.arbol_almacenamiento = ArbolBinario()
         elif self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][1]:
@@ -107,7 +150,7 @@ class BibliotecaGUI:
         elif self.entry_tipo_almacenamiento.get() == self.entry_tipo_almacenamiento['values'][3]:
             self.arbol_almacenamiento = ArbolAVL()
 
-        for libro in self.biblioteca.leer_libros():
+        for libro in libros:
             self.arbol_almacenamiento.insertar(libro)
         
         self.leer_libros()
