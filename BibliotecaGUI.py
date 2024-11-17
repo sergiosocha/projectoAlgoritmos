@@ -187,10 +187,13 @@ class BibliotecaGUI:
             self.entry_isbn.insert(0, libro.isbn)
 
     def eliminar_libro(self):
-        if self.selected_book_isbn:
+        if self.selected_book_index is not None:
             try:
-                self.biblioteca.eliminar_libro(self.selected_book_isbn)
+                print(f"Libro a eliminar: {self.selected_book_index}")
+                selected_book = self.arbol_almacenamiento.imprimir()[self.selected_book_index]
+                self.arbol_almacenamiento.eliminar_libro(selected_book)
                 messagebox.showinfo("Éxito", "Libro eliminado exitosamente")
+                self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
                 self.leer_libros()
                 self.limpiar_entradas()
             except ValueError as e:
