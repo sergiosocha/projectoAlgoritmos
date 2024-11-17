@@ -147,19 +147,23 @@ class BibliotecaGUI:
         isbn = self.entry_isbn.get()
 
         if self.selected_book_index is not None:
-            libro_seleccionado = self.arbol_almacenamiento.imprimir()[self.selected_book_index]
-            self.arbol_almacenamiento.actualizar_libro(
-                isbn=libro_seleccionado.isbn,
-                nuevo_titulo=titulo,
-                nuevo_autor=autor,
-                nueva_categoria=categoria,
-                nuevo_ano_publicacion=ano
-            )
+            try:
+                libro_seleccionado = self.arbol_almacenamiento.imprimir()[self.selected_book_index]
+                self.arbol_almacenamiento.actualizar_libro(
+                    isbn=libro_seleccionado.isbn,
+                    nuevo_titulo=titulo,
+                    nuevo_autor=autor,
+                    nueva_categoria=categoria,
+                    nuevo_ano_publicacion=ano
+                )
 
-            self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
+                self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
 
-            self.leer_libros()
-            self.limpiar_entradas()
+                self.leer_libros()
+                self.limpiar_entradas()
+            except ValueError as e:
+                messagebox.showerror("Error", str(e))
+            
         else:
             messagebox.showwarning("Advertencia", "No hay libro seleccionado para actualizar")
 

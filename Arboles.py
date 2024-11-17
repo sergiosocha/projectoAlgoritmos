@@ -81,14 +81,13 @@ class ArbolBinario:
         self.actualizado = False
 
     def actualizar_recursivo(self, nodo, nuevos_datos):
-        # self.imprimir_arbol(self.raiz)
         if nodo is not None:
             if nodo.libro.isbn == nuevos_datos['isbn']:
                 libro_actualizado = Libro(
                     nuevos_datos['nuevo_titulo'] or nodo.libro.titulo,
                     nuevos_datos['nuevo_autor'] or nodo.libro.autor,
                     nuevos_datos['nueva_categoria'] or nodo.libro.categoria,
-                    nuevos_datos['nuevo_ano_publicacion'] or nodo.libro.anoPublicacion,
+                    int(nuevos_datos['nuevo_ano_publicacion']) or nodo.libro.anoPublicacion,
                     nodo.libro.isbn
                 )
                 self.raiz = self._eliminar_libro(self.raiz, nodo.libro)
@@ -298,47 +297,6 @@ class ArbolAVL(ArbolBinario):
         nuevo_libro = Libro(titulo, autor, categoria, anoPublicacion, isbn)
         self.insertar(nuevo_libro)
     
-    def actualizar_libro(self, isbn, nuevo_titulo=None, nuevo_autor=None, nueva_categoria=None, nuevo_ano_publicacion=None):
-        nuevos_datos = {
-            "isbn": isbn,
-            "nuevo_titulo": nuevo_titulo,
-            "nuevo_autor": nuevo_autor,
-            "nueva_categoria": nueva_categoria,
-            "nuevo_ano_publicacion": nuevo_ano_publicacion
-        }
-
-        self.actualizar_recursivo(self.raiz, nuevos_datos)
-        self.actualizado = False
-
-        arbol_reorganizado = ArbolAVL()
-        for libro in self.imprimir():
-            arbol_reorganizado.insertar(libro)
-        
-        self.raiz = arbol_reorganizado.raiz
-
-    def actualizar_recursivo(self, nodo, nuevos_datos):
-        if nodo is not None:
-            if nodo.libro.isbn == nuevos_datos['isbn']:
-                self.imprimir_arbol(self.raiz)
-
-                libro_actualizado = Libro(
-                    nuevos_datos['nuevo_titulo'] or nodo.libro.titulo,
-                    nuevos_datos['nuevo_autor'] or nodo.libro.autor,
-                    nuevos_datos['nueva_categoria'] or nodo.libro.categoria,
-                    nuevos_datos['nuevo_ano_publicacion'] or nodo.libro.anoPublicacion,
-                    nodo.libro.isbn
-                )
-
-                nodo.libro = libro_actualizado                
-
-                self.actualizado = True
-                return
-            
-            if not self.actualizado:
-                self.actualizar_recursivo(nodo.izquierda, nuevos_datos)
-            if not self.actualizado:
-                self.actualizar_recursivo(nodo.derecha, nuevos_datos)
-    
     def _eliminar_libro(self, sub_arbol, libro):
         if sub_arbol is None:
             return None
@@ -361,6 +319,7 @@ class ArbolAVL(ArbolBinario):
                 sub_arbol = self.sucesor(nodo_eliminar)
                 nodo_eliminar = None
             
-            sub_arbol.altura -= 1
+            if sub_arbol is not None:
+                sub_arbol.altura -= 1
 
         return sub_arbol
