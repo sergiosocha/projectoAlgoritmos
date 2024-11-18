@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 from tkinter.ttk import Combobox
 from GestionBiblioteca import Biblioteca
 from Arboles import ArbolBinario, ArbolNario, ArbolAVL
-from biblioteca import GrafoLibros
+from Grafo import GrafoLibros
 from Libro import Libro
 
 

@@ -1,86 +1,68 @@
-import tkinter as tk
-from tkinter import messagebox
-from biblioteca import Libro, BST, ArbolNArio, AVL, GrafoLibros
+import pickle
+import networkx as nx
+import matplotlib.pyplot as plt
+import logging
 
-class BibliotecaGUI:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Sistema de Gestión de Biblioteca")
-        self.libros = []
-        self.bst = BST()
-        self.arbol_nario = ArbolNArio()
-        self.avl = AVL()
-        self.grafo = GrafoLibros()
-        self.diccionario_autores = {}
+class GrafoLibros:
+    def __init__(self):
+        self.grafo = nx.Graph()
 
-        self.frame = tk.Frame(root)
-        self.frame.pack()
+    def agregar_libro(self, libro):
+        if libro.titulo not in self.grafo:
+            self.grafo.add_node(libro.titulo, autor=libro.autor, año=libro.anoPublicacion, categoria=libro.categoria)
+            logging.info(f"Libro agregado: {libro}")
 
-        self.titulo_label = tk.Label(self.frame, text="Título")
-        self.titulo_label.grid(row=0, column=0)
-        self.titulo_entry = tk.Entry(self.frame)
-        self.titulo_entry.grid(row=0, column=1)
+    def conectar_libros(self, titulo1, titulo2):
+        if titulo1 in self.grafo and titulo2 in self.grafo:
+            relaciones = []
+            color = "gray"
+            valor = ""
 
-        self.autor_label = tk.Label(self.frame, text="Autor")
-        self.autor_label.grid(row=1, column=0)
-        self.autor_entry = tk.Entry(self.frame)
-        self.autor_entry.grid(row=1, column=1)
+            if self.grafo.nodes[titulo1]["autor"] == self.grafo.nodes[titulo2]["autor"]:
+                relaciones.append("Autor: " + self.grafo.nodes[titulo1]["autor"])
+                color = "blue"
+                valor = self.grafo.nodes[titulo1]["autor"]
+            if self.grafo.nodes[titulo1]["categoria"] == self.grafo.nodes[titulo2]["categoria"]:
+                relaciones.append("Género: " + self.grafo.nodes[titulo1]["categoria"])
+                color = "green"
+                valor = self.grafo.nodes[titulo1]["categoria"]
+            if self.grafo.nodes[titulo1]["año"] == self.grafo.nodes[titulo2]["año"]:
+                relaciones.append("Año: " + str(self.grafo.nodes[titulo1]["año"]))
+                color = "red"
+                valor = str(self.grafo.nodes[titulo1]["año"])
 
-        self.genero_label = tk.Label(self.frame, text="Género")
-        self.genero_label.grid(row=2, column=0)
-        self.genero_entry = tk.Entry(self.frame)
-        self.genero_entry.grid(row=2, column=1)
+            if relaciones:
+                self.grafo.add_edge(titulo1, titulo2, color=color, relaciones=", ".join(relaciones), valor=valor)
+                logging.info(f"Relación agregada entre {titulo1} y {titulo2}: {', '.join(relaciones)}")
 
-        self.ano_label = tk.Label(self.frame, text="Año de Publicación")
-        self.ano_label.grid(row=3, column=0)
-        self.ano_entry = tk.Entry(self.frame)
-        self.ano_entry.grid(row=3, column=1)
-
-        self.descripcion_label = tk.Label(self.frame, text="Descripción")
-        self.descripcion_label.grid(row=4, column=0)
-        self.descripcion_entry = tk.Entry(self.frame)
-        self.descripcion_entry.grid(row=4, column=1)
-
-        self.agregar_button = tk.Button(self.frame, text="Agregar Libro", command=self.agregar_libro)
-        self.agregar_button.grid(row=5, column=0, columnspan=2)
-
-        self.mostrar_grafo_button = tk.Button(self.frame, text="Mostrar Grafo", command=self.mostrar_grafo)
-        self.mostrar_grafo_button.grid(row=6, column=0, columnspan=2)
-
-    def agregar_libro(self):
-        titulo = self.titulo_entry.get()
-        autor = self.autor_entry.get()
-        genero = self.genero_entry.get()
-        ano_publicacion_str = self.ano_entry.get()
-        
-        # Validar que el año de publicación sea un número entero
-        if not ano_publicacion_str.isdigit():
-            messagebox.showerror("Error", "El año de publicación debe ser un número entero.")
-            return
-        
-        ano_publicacion = int(ano_publicacion_str)
-        descripcion = self.descripcion_entry.get()
-
-        libro = Libro(titulo, autor, genero, ano_publicacion, descripcion)
-        self.libros.append(libro)
-        self.bst.insertar(libro)
-        self.arbol_nario.agregar_libro(libro)
-        self.avl.insertar(libro)
-        self.grafo.agregar_libro(libro)
-        if autor not in self.diccionario_autores:
-            self.diccionario_autores[autor] = []
-        self.diccionario_autores[autor].append(libro)
-
-        for otro_libro in self.libros:
-            if otro_libro != libro:
-                self.grafo.conectar_libros(libro.titulo, otro_libro.titulo)
-
-        messagebox.showinfo("Información", "Libro agregado exitosamente")
+    def conectar_arbol(self, libros):
+        for i in range(len(libros)):
+            for j in range(len(libros)):
+                if i != j:
+                    self.conectar_libros(libros[i].titulo, libros[j].titulo)
 
     def mostrar_grafo(self):
-        self.grafo.mostrar_grafo()
+        pos = nx.spring_layout(self.grafo)
+        edge_colors = [self.grafo[u][v]['color'] for u, v in self.grafo.edges]
+        edge_labels = { (u, v): self.grafo[u][v].get('valor', '') for u, v in self.grafo.edges }
+        nx.draw(self.grafo, pos, with_labels=True, node_size=3000, node_color="skyblue", font_size=10, font_weight="bold", edge_color=edge_colors)
+        nx.draw_networkx_edge_labels(self.grafo, pos, edge_labels=edge_labels, font_size=8, font_color='black')
+        plt.figtext(0.8, 0.5, "Leyenda:\nAzul: Autor\nVerde: Género\nRojo: Año de publicación", wrap=True, horizontalalignment='left', fontsize=12)
+        plt.show()
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = BibliotecaGUI(root)
-    root.mainloop()
+    def guardar_grafo(self):
+        try:
+            with open('grafo.pkl', 'wb') as f:
+                pickle.dump(self.grafo, f)
+                logging.info("Grafo guardado exitosamente.")
+        except Exception as e:
+            logging.error(f"Error al guardar el grafo: {e}")
+
+    def cargar_grafo(self):
+        try:
+            with open('grafo.pkl', 'rb') as f:
+                self.grafo = pickle.load(f)
+            logging.info("Grafo cargado exitosamente.")
+        except FileNotFoundError:
+            self.grafo = nx.Graph()
+            logging.warning("No se encontró un grafo guardado, creando uno nuevo.")
