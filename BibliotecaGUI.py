@@ -3,6 +3,8 @@ from tkinter import ttk, messagebox
 from tkinter.ttk import Combobox
 from GestionBiblioteca import Biblioteca
 from Arboles import ArbolBinario, ArbolNario, ArbolAVL
+from biblioteca import GrafoLibros
+from Libro import Libro
 
 
 class BibliotecaGUI:
@@ -99,7 +101,7 @@ class BibliotecaGUI:
         self.entry_tipo_almacenamiento.bind("<<ComboboxSelected>>", lambda event: self.actualizar_arbol())
         self.actualizar_arbol()
 
-        #IMPLEMENTACIÓN DE BUSQUEDA Y ORDENAMIENTO
+        # IMPLEMENTACIÓN DE BUSQUEDA Y ORDENAMIENTO
         self.label_tipo_busqueda = ttk.Label(self.root, text="Buscar por:")
         self.label_tipo_busqueda.grid(row=2, column=2, padx=10, pady=5)
 
@@ -126,6 +128,17 @@ class BibliotecaGUI:
 
         self.btn_buscar = tk.Button(self.root, text="Buscar", command=self.buscar_libro)
         self.btn_buscar.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
+
+        # IMPLEMENTACIÓN GRAFO
+        self.btn_mostrar_grafo = tk.Button(self.root, text="Mostrar Grafo", command=self.mostrar_grafo)
+        self.btn_mostrar_grafo.grid(row=1, column=2, columnspan=2)
+
+    def mostrar_grafo(self, event=None):
+        grafo = GrafoLibros()
+        for libro in self.arbol_almacenamiento.imprimir():
+            grafo.agregar_libro(libro)
+
+        grafo.mostrar_grafo()
 
     def buscar_libro(self, event=None):
         if len(self.entry_busqueda.get()) == 0:
@@ -165,7 +178,7 @@ class BibliotecaGUI:
         isbn = self.entry_isbn.get()
 
         if titulo and autor and categoria and ano and isbn:
-            self.arbol_almacenamiento.crear_libro(titulo, autor, categoria, ano, isbn)
+            self.arbol_almacenamiento.insertar(Libro(titulo, autor, categoria, ano, isbn))
             self.biblioteca.guardar_libros(self.arbol_almacenamiento.imprimir())
             messagebox.showinfo("Éxito", "Libro creado exitosamente")
             self.limpiar_entradas()

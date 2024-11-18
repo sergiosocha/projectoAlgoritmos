@@ -7,17 +7,6 @@ import logging
 logging.basicConfig(filename='sistema_libros.log', level=logging.INFO,
                     format='%(asctime)s:%(levelname)s:%(message)s')
 
-class Libro:
-    def __init__(self, titulo, autor, genero, ano_publicacion, descripcion=""):
-        self.titulo = titulo
-        self.autor = autor
-        self.genero = genero
-        self.ano_publicacion = ano_publicacion
-        self.descripcion = descripcion
-
-    def __str__(self):
-        return f"{self.titulo} by {self.autor} ({self.ano_publicacion}) - {self.genero}"
-
 class NodoBST:
     def __init__(self, libro):
         self.libro = libro
@@ -60,8 +49,8 @@ class BST:
             return self._buscar(nodo.derecha, titulo)
 
 class NodoNArio:
-    def __init__(self, genero):
-        self.genero = genero
+    def __init__(self, categoria):
+        self.categoria = categoria
         self.hijos = []
         self.libros = []
 
@@ -70,25 +59,25 @@ class ArbolNArio:
         self.raiz = NodoNArio("Libros")
 
     def agregar_libro(self, libro):
-        nodo_genero = self._buscar_o_crear_genero(self.raiz, libro.genero)
+        nodo_genero = self._buscar_o_crear_genero(self.raiz, libro.categoria)
         nodo_genero.libros.append(libro)
 
-    def _buscar_o_crear_genero(self, nodo, genero):
+    def _buscar_o_crear_genero(self, nodo, categoria):
         for hijo in nodo.hijos:
-            if hijo.genero == genero:
+            if hijo.categoria == categoria:
                 return hijo
-        nuevo_nodo = NodoNArio(genero)
+        nuevo_nodo = NodoNArio(categoria)
         nodo.hijos.append(nuevo_nodo)
         return nuevo_nodo
 
-    def buscar_por_genero(self, genero):
-        return self._buscar_genero(self.raiz, genero)
+    def buscar_por_genero(self, categoria):
+        return self._buscar_genero(self.raiz, categoria)
 
-    def _buscar_genero(self, nodo, genero):
-        if nodo.genero == genero:
+    def _buscar_genero(self, nodo, categoria):
+        if nodo.categoria == categoria:
             return nodo.libros
         for hijo in nodo.hijos:
-            resultado = self._buscar_genero(hijo, genero)
+            resultado = self._buscar_genero(hijo, categoria)
             if resultado:
                 return resultado
         return None
@@ -110,7 +99,7 @@ class AVL:
     def _insertar(self, nodo, libro):
         if not nodo:
             return NodoAVL(libro)
-        if libro.ano_publicacion < nodo.libro.ano_publicacion:
+        if libro.anoPublicacion < nodo.libro.anoPublicacion:
             nodo.izquierda = self._insertar(nodo.izquierda, libro)
         else:
             nodo.derecha = self._insertar(nodo.derecha, libro)
@@ -118,14 +107,14 @@ class AVL:
         nodo.altura = 1 + max(self._get_altura(nodo.izquierda), self._get_altura(nodo.derecha))
         balance = self._get_balance(nodo)
 
-        if balance > 1 and libro.ano_publicacion < nodo.izquierda.libro.ano_publicacion:
+        if balance > 1 and libro.anoPublicacion < nodo.izquierda.libro.anoPublicacion:
             return self._rotar_derecha(nodo)
-        if balance < -1 and libro.ano_publicacion > nodo.derecha.libro.ano_publicacion:
+        if balance < -1 and libro.anoPublicacion > nodo.derecha.libro.anoPublicacion:
             return self._rotar_izquierda(nodo)
-        if balance > 1 and libro.ano_publicacion > nodo.izquierda.libro.ano_publicacion:
+        if balance > 1 and libro.anoPublicacion > nodo.izquierda.libro.anoPublicacion:
             nodo.izquierda = self._rotar_izquierda(nodo.izquierda)
             return self._rotar_derecha(nodo)
-        if balance < -1 and libro.ano_publicacion < nodo.derecha.libro.ano_publicacion:
+        if balance < -1 and libro.anoPublicacion < nodo.derecha.libro.anoPublicacion:
             nodo.derecha = self._rotar_derecha(nodo.derecha)
             return self._rotar_izquierda(nodo)
 
@@ -159,18 +148,18 @@ class AVL:
             return 0
         return self._get_altura(nodo.izquierda) - self._get_altura(nodo.derecha)
 
-    def buscar_por_ano(self, ano_publicacion):
-        return self._buscar_ano(self.raiz, ano_publicacion)
+    def buscar_por_ano(self, anoPublicacion):
+        return self._buscar_ano(self.raiz, anoPublicacion)
 
-    def _buscar_ano(self, nodo, ano_publicacion):
+    def _buscar_ano(self, nodo, anoPublicacion):
         if nodo is None:
             return None
-        if nodo.libro.ano_publicacion == ano_publicacion:
+        if nodo.libro.anoPublicacion == anoPublicacion:
             return nodo.libro
-        elif ano_publicacion < nodo.libro.ano_publicacion:
-            return self._buscar_ano(nodo.izquierda, ano_publicacion)
+        elif anoPublicacion < nodo.libro.anoPublicacion:
+            return self._buscar_ano(nodo.izquierda, anoPublicacion)
         else:
-            return self._buscar_ano(nodo.derecha, ano_publicacion)
+            return self._buscar_ano(nodo.derecha, anoPublicacion)
 
 def quicksort_libros(libros, key):
     if len(libros) <= 1:
@@ -209,7 +198,7 @@ class GrafoLibros:
 
     def agregar_libro(self, libro):
         if libro.titulo not in self.grafo:
-            self.grafo.add_node(libro.titulo, autor=libro.autor, año=libro.ano_publicacion, genero=libro.genero)
+            self.grafo.add_node(libro.titulo, autor=libro.autor, año=libro.anoPublicacion, categoria=libro.categoria)
             logging.info(f"Libro agregado: {libro}")
 
     def conectar_libros(self, titulo1, titulo2):
@@ -222,10 +211,10 @@ class GrafoLibros:
                 relaciones.append("Autor: " + self.grafo.nodes[titulo1]["autor"])
                 color = "blue"
                 valor = self.grafo.nodes[titulo1]["autor"]
-            if self.grafo.nodes[titulo1]["genero"] == self.grafo.nodes[titulo2]["genero"]:
-                relaciones.append("Género: " + self.grafo.nodes[titulo1]["genero"])
+            if self.grafo.nodes[titulo1]["categoria"] == self.grafo.nodes[titulo2]["categoria"]:
+                relaciones.append("Género: " + self.grafo.nodes[titulo1]["categoria"])
                 color = "green"
-                valor = self.grafo.nodes[titulo1]["genero"]
+                valor = self.grafo.nodes[titulo1]["categoria"]
             if self.grafo.nodes[titulo1]["año"] == self.grafo.nodes[titulo2]["año"]:
                 relaciones.append("Año: " + str(self.grafo.nodes[titulo1]["año"]))
                 color = "red"
