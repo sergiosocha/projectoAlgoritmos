@@ -12,18 +12,20 @@ class BibliotecaGUI:
         self.root.title("Gestión de Biblioteca")
         self.selected_book_index = None
 
+
+
         self.label_titulo = tk.Label(self.root, text="Título:")
         self.label_titulo.grid(row=0, column=0)
         self.entry_titulo = tk.Entry(self.root)
-        self.entry_titulo.grid(row=0, column=1)
+        self.entry_titulo.grid(row=0, column=1, padx=10, pady=5)
 
         self.label_autor = tk.Label(self.root, text="Autor:")
-        self.label_autor.grid(row=1, column=0)
+        self.label_autor.grid(row=1, column=0, padx=10, pady=5)
         self.entry_autor = tk.Entry(self.root)
-        self.entry_autor.grid(row=1, column=1)
+        self.entry_autor.grid(row=1, column=1, padx=10, pady=5)
 
         self.label_categoria = tk.Label(self.root, text="Categoría:")
-        self.label_categoria.grid(row=2, column=0)
+        self.label_categoria.grid(row=2, column=0, padx=10, pady=5)
         self.entry_categoria = Combobox(
             state="readonly",
             values=[
@@ -31,12 +33,12 @@ class BibliotecaGUI:
                 "Misterio", "Educación", "Aventura", "Poesía"
             ]
         )
-        self.entry_categoria.grid(row=2, column=1)
+        self.entry_categoria.grid(row=2, column=1, padx=10, pady=5)
 
         self.label_ano = tk.Label(self.root, text="Año de Publicación:")
-        self.label_ano.grid(row=3, column=0)
+        self.label_ano.grid(row=3, column=0, padx=10, pady=5)
         self.entry_ano = tk.Entry(self.root)
-        self.entry_ano.grid(row=3, column=1)
+        self.entry_ano.grid(row=3, column=1, padx=10, pady=5)
 
         self.label_isbn = tk.Label(self.root, text="ISBN:")
         self.label_isbn.grid(row=4, column=0)
@@ -45,16 +47,16 @@ class BibliotecaGUI:
 
 
         self.btn_crear = tk.Button(self.root, text="Crear Libro", command=self.crear_libro)
-        self.btn_crear.grid(row=5, column=0)
+        self.btn_crear.grid(row=5, column=0,padx=10, pady=5)
 
         self.btn_leer = tk.Button(self.root, text="Leer Libros", command=self.leer_libros)
-        self.btn_leer.grid(row=5, column=1)
+        self.btn_leer.grid(row=5, column=1, padx=10, pady=5)
 
         self.btn_actualizar = tk.Button(self.root, text="Actualizar Libro", command=self.actualizar_libro)
-        self.btn_actualizar.grid(row=5, column=2)
+        self.btn_actualizar.grid(row=5, column=2, padx=10, pady=5)
 
         self.btn_actualizar = tk.Button(self.root, text="Eliminar Libro", command=self.eliminar_libro)
-        self.btn_actualizar.grid(row=5, column=3)
+        self.btn_actualizar.grid(row=5, column=3, padx=10, pady=5)
 
 
 
@@ -80,7 +82,7 @@ class BibliotecaGUI:
         self.arbol_almacenamiento = None
 
         self.label_tipo_almacenamiento = ttk.Label(self.root, text="Tipo de almacenamiento:")
-        self.label_tipo_almacenamiento.grid(row=0, column=2)
+        self.label_tipo_almacenamiento.grid(row=0, column=2, padx=10, pady=5)
         
         self.entry_tipo_almacenamiento = Combobox(
             state="readonly",
@@ -92,14 +94,14 @@ class BibliotecaGUI:
             ],
             width=25
         )
-        self.entry_tipo_almacenamiento.grid(row=0, column=3)
+        self.entry_tipo_almacenamiento.grid(row=0, column=3, padx=10, pady=5)
         self.entry_tipo_almacenamiento.set(self.entry_tipo_almacenamiento['values'][0])
         self.entry_tipo_almacenamiento.bind("<<ComboboxSelected>>", lambda event: self.actualizar_arbol())
         self.actualizar_arbol()
 
         #IMPLEMENTACIÓN DE BUSQUEDA Y ORDENAMIENTO
         self.label_tipo_busqueda = ttk.Label(self.root, text="Buscar por:")
-        self.label_tipo_busqueda.grid(row=2, column=2)
+        self.label_tipo_busqueda.grid(row=2, column=2, padx=10, pady=5)
 
         self.tipo_busqueda = tk.StringVar()
         self.entry_tipo_busqueda = Combobox(
@@ -113,17 +115,17 @@ class BibliotecaGUI:
                 "ISBN"
             ]
         )
-        self.entry_tipo_busqueda.grid(row=2, column=3)
+        self.entry_tipo_busqueda.grid(row=2, column=3, padx=10, pady=5)
         self.entry_tipo_busqueda.set(self.entry_tipo_busqueda['values'][0])
 
         self.label_busqueda = tk.Label(self.root, text="Libro a buscar:")
-        self.label_busqueda.grid(row=3, column=2)
+        self.label_busqueda.grid(row=3, column=2, padx=10, pady=5)
 
         self.entry_busqueda = tk.Entry(self.root)
-        self.entry_busqueda.grid(row=3, column=3)
+        self.entry_busqueda.grid(row=3, column=3, padx=10, pady=5)
 
         self.btn_buscar = tk.Button(self.root, text="Buscar", command=self.buscar_libro)
-        self.btn_buscar.grid(row=4, column=2, columnspan=2)
+        self.btn_buscar.grid(row=4, column=2, columnspan=2, padx=10, pady=5)
 
     def buscar_libro(self, event=None):
         if len(self.entry_busqueda.get()) == 0:

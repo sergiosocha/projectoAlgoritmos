@@ -1,16 +1,37 @@
 [
     {
-        "titulo": "12312",
-        "autor": "123123",
-        "categoria": "Ciencia Ficci\u00f3n",
-        "anoPublicacion": "2015",
-        "isbn": "1234556"
+        "titulo": "El Senor de los Anillos",
+        "autor": "J.R.R. Tolkien",
+        "categoria": "Fantasia",
+        "anoPublicacion": "1954",
+        "isbn": "9780261102385"
     },
     {
-        "titulo": "1231212",
-        "autor": "31233",
-        "categoria": "Fantas\u00eda",
-        "anoPublicacion": "2013",
-        "isbn": "12312"
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "categoria": "Ciencia Ficcion",
+        "anoPublicacion": "1949",
+        "isbn": "9780451524935"
+    },
+    {
+        "titulo": "Sapiens: De animales a dioses",
+        "autor": "Yuval Noah Harari",
+        "categoria": "No Ficcion",
+        "anoPublicacion": "2011",
+        "isbn": "9788499926223"
+    },
+    {
+        "titulo": "El nombre del viento",
+        "autor": "Patrick Rothfuss",
+        "categoria": "Fantasia",
+        "anoPublicacion": "2007",
+        "isbn": "9788401352836"
+    },
+    {
+        "titulo": "Cien anos de soledad",
+        "autor": "Gabriel Garcia Marquez",
+        "categoria": "Fantasia",
+        "anoPublicacion": "1967",
+        "isbn": "9780307474728"
     }
 ]
