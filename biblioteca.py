@@ -224,6 +224,12 @@ class GrafoLibros:
                 self.grafo.add_edge(titulo1, titulo2, color=color, relaciones=", ".join(relaciones), valor=valor)
                 logging.info(f"Relación agregada entre {titulo1} y {titulo2}: {', '.join(relaciones)}")
 
+    def conectar_arbol(self, libros):
+        for libro in libros:
+            for libro2 in libros:
+                if libro != libro2:
+                    self.conectar_libros(libro.titulo, libro2.titulo)
+
     def mostrar_grafo(self):
         pos = nx.spring_layout(self.grafo)
         edge_colors = [self.grafo[u][v]['color'] for u, v in self.grafo.edges]

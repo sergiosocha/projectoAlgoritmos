@@ -135,9 +135,11 @@ class BibliotecaGUI:
 
     def mostrar_grafo(self, event=None):
         grafo = GrafoLibros()
-        for libro in self.arbol_almacenamiento.imprimir():
+        libros = self.arbol_almacenamiento.imprimir()
+        for libro in libros:
             grafo.agregar_libro(libro)
 
+        grafo.conectar_arbol(libros)
         grafo.mostrar_grafo()
 
     def buscar_libro(self, event=None):

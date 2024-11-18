@@ -40,3 +40,75 @@
 2024-11-18 10:48:52,037:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
 2024-11-18 10:48:52,037:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
 2024-11-18 10:48:52,037:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 10:59:04,654:INFO:Libro agregado: Titulo: 1984, Autor: George Orwell, Categoria: Ciencia Ficcion, Año: 1949, ISBN: 9780451524935
+2024-11-18 10:59:04,654:INFO:Libro agregado: Titulo: Cien anos de soledad, Autor: Gabriel Garcia Marquez, Categoria: Fantasia, Año: 1967, ISBN: 9780307474728
+2024-11-18 10:59:04,654:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
+2024-11-18 10:59:04,654:INFO:Libro agregado: Titulo: El Senor de los Anillos, Autor: J.R.R. Tolkien, Categoria: Fantasia, Año: 1954, ISBN: 9780261102385
+2024-11-18 10:59:04,654:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 10:59:04,654:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
+2024-11-18 10:59:34,215:INFO:Libro agregado: Titulo: 1984, Autor: George Orwell, Categoria: Ciencia Ficcion, Año: 1949, ISBN: 9780451524935
+2024-11-18 10:59:34,215:INFO:Libro agregado: Titulo: Cien anos de soledad, Autor: Gabriel Garcia Marquez, Categoria: Fantasia, Año: 1967, ISBN: 9780307474728
+2024-11-18 10:59:34,215:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
+2024-11-18 10:59:34,215:INFO:Libro agregado: Titulo: El Senor de los Anillos, Autor: J.R.R. Tolkien, Categoria: Fantasia, Año: 1954, ISBN: 9780261102385
+2024-11-18 10:59:34,215:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 10:59:34,215:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
+2024-11-18 10:59:43,774:INFO:Libro agregado: Titulo: 1984, Autor: George Orwell, Categoria: Ciencia Ficcion, Año: 1949, ISBN: 9780451524935
+2024-11-18 10:59:43,775:INFO:Libro agregado: Titulo: Cien anos de soledad, Autor: Gabriel Garcia Marquez, Categoria: Fantasia, Año: 1967, ISBN: 9780307474728
+2024-11-18 10:59:43,776:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
+2024-11-18 10:59:43,776:INFO:Libro agregado: Titulo: El Senor de los Anillos, Autor: J.R.R. Tolkien, Categoria: Fantasia, Año: 1954, ISBN: 9780261102385
+2024-11-18 10:59:43,776:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 10:59:43,776:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
+2024-11-18 11:01:51,920:INFO:Libro agregado: Titulo: 1984, Autor: George Orwell, Categoria: Ciencia Ficcion, Año: 1949, ISBN: 9780451524935
+2024-11-18 11:01:51,920:INFO:Libro agregado: Titulo: Cien anos de soledad, Autor: Gabriel Garcia Marquez, Categoria: Fantasia, Año: 1967, ISBN: 9780307474728
+2024-11-18 11:01:51,920:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
+2024-11-18 11:01:51,920:INFO:Libro agregado: Titulo: El Senor de los Anillos, Autor: J.R.R. Tolkien, Categoria: Fantasia, Año: 1954, ISBN: 9780261102385
+2024-11-18 11:01:51,920:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 11:01:51,920:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
+2024-11-18 11:01:51,920:INFO:Relación agregada entre 1984 y 1984: Autor: George Orwell, Género: Ciencia Ficcion, Año: 1949
+2024-11-18 11:01:51,920:INFO:Relación agregada entre Cien anos de soledad y Cien anos de soledad: Autor: Gabriel Garcia Marquez, Género: Fantasia, Año: 1967
+2024-11-18 11:01:51,920:INFO:Relación agregada entre Cien anos de soledad y El nombre del viento: Género: Fantasia
+2024-11-18 11:01:51,920:INFO:Relación agregada entre Cien anos de soledad y El Senor de los Anillos: Género: Fantasia
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El nombre del viento y Cien anos de soledad: Género: Fantasia
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El nombre del viento y El nombre del viento: Autor: Patrick Rothfuss, Género: Fantasia, Año: 2007
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El nombre del viento y El Senor de los Anillos: Género: Fantasia
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El nombre del viento y El temor de un hombre sabio: Autor: Patrick Rothfuss
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El Senor de los Anillos y Cien anos de soledad: Género: Fantasia
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El Senor de los Anillos y El nombre del viento: Género: Fantasia
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El Senor de los Anillos y El Senor de los Anillos: Autor: J.R.R. Tolkien, Género: Fantasia, Año: 1954
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El temor de un hombre sabio y El nombre del viento: Autor: Patrick Rothfuss
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El temor de un hombre sabio y El temor de un hombre sabio: Autor: Patrick Rothfuss, Género: Fantasía, Año: 2011
+2024-11-18 11:01:51,920:INFO:Relación agregada entre El temor de un hombre sabio y Sapiens: De animales a dioses: Año: 2011
+2024-11-18 11:01:51,920:INFO:Relación agregada entre Sapiens: De animales a dioses y El temor de un hombre sabio: Año: 2011
+2024-11-18 11:01:51,920:INFO:Relación agregada entre Sapiens: De animales a dioses y Sapiens: De animales a dioses: Autor: Yuval Noah Harari, Género: No Ficcion, Año: 2011
+2024-11-18 11:03:21,480:INFO:Libro agregado: Titulo: 1984, Autor: George Orwell, Categoria: Ciencia Ficcion, Año: 1949, ISBN: 9780451524935
+2024-11-18 11:03:21,480:INFO:Libro agregado: Titulo: Cien anos de soledad, Autor: Gabriel Garcia Marquez, Categoria: Fantasia, Año: 1967, ISBN: 9780307474728
+2024-11-18 11:03:21,480:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
+2024-11-18 11:03:21,480:INFO:Libro agregado: Titulo: El Senor de los Anillos, Autor: J.R.R. Tolkien, Categoria: Fantasia, Año: 1954, ISBN: 9780261102385
+2024-11-18 11:03:21,480:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 11:03:21,480:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
+2024-11-18 11:03:21,480:INFO:Relación agregada entre Cien anos de soledad y El nombre del viento: Género: Fantasia
+2024-11-18 11:03:21,480:INFO:Relación agregada entre Cien anos de soledad y El Senor de los Anillos: Género: Fantasia
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El nombre del viento y Cien anos de soledad: Género: Fantasia
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El nombre del viento y El Senor de los Anillos: Género: Fantasia
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El nombre del viento y El temor de un hombre sabio: Autor: Patrick Rothfuss
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El Senor de los Anillos y Cien anos de soledad: Género: Fantasia
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El Senor de los Anillos y El nombre del viento: Género: Fantasia
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El temor de un hombre sabio y El nombre del viento: Autor: Patrick Rothfuss
+2024-11-18 11:03:21,480:INFO:Relación agregada entre El temor de un hombre sabio y Sapiens: De animales a dioses: Año: 2011
+2024-11-18 11:03:21,480:INFO:Relación agregada entre Sapiens: De animales a dioses y El temor de un hombre sabio: Año: 2011
+2024-11-18 11:06:20,926:INFO:Libro agregado: Titulo: 1984, Autor: George Orwell, Categoria: Ciencia Ficcion, Año: 1949, ISBN: 9780451524935
+2024-11-18 11:06:20,927:INFO:Libro agregado: Titulo: Cien anos de soledad, Autor: Gabriel Garcia Marquez, Categoria: Fantasia, Año: 1967, ISBN: 9780307474728
+2024-11-18 11:06:20,927:INFO:Libro agregado: Titulo: El nombre del viento, Autor: Patrick Rothfuss, Categoria: Fantasia, Año: 2007, ISBN: 9788401352836
+2024-11-18 11:06:20,928:INFO:Libro agregado: Titulo: El Senor de los Anillos, Autor: J.R.R. Tolkien, Categoria: Fantasia, Año: 1954, ISBN: 9780261102385
+2024-11-18 11:06:20,928:INFO:Libro agregado: Titulo: El temor de un hombre sabio, Autor: Patrick Rothfuss, Categoria: Fantasía, Año: 2011, ISBN: 9783608938166
+2024-11-18 11:06:20,928:INFO:Libro agregado: Titulo: Sapiens: De animales a dioses, Autor: Yuval Noah Harari, Categoria: No Ficcion, Año: 2011, ISBN: 9788499926223
+2024-11-18 11:06:20,929:INFO:Relación agregada entre Cien anos de soledad y El nombre del viento: Género: Fantasia
+2024-11-18 11:06:20,929:INFO:Relación agregada entre Cien anos de soledad y El Senor de los Anillos: Género: Fantasia
+2024-11-18 11:06:20,930:INFO:Relación agregada entre El nombre del viento y Cien anos de soledad: Género: Fantasia
+2024-11-18 11:06:20,930:INFO:Relación agregada entre El nombre del viento y El Senor de los Anillos: Género: Fantasia
+2024-11-18 11:06:20,930:INFO:Relación agregada entre El nombre del viento y El temor de un hombre sabio: Autor: Patrick Rothfuss
+2024-11-18 11:06:20,931:INFO:Relación agregada entre El Senor de los Anillos y Cien anos de soledad: Género: Fantasia
+2024-11-18 11:06:20,931:INFO:Relación agregada entre El Senor de los Anillos y El nombre del viento: Género: Fantasia
+2024-11-18 11:06:20,931:INFO:Relación agregada entre El temor de un hombre sabio y El nombre del viento: Autor: Patrick Rothfuss
+2024-11-18 11:06:20,932:INFO:Relación agregada entre El temor de un hombre sabio y Sapiens: De animales a dioses: Año: 2011
+2024-11-18 11:06:20,932:INFO:Relación agregada entre Sapiens: De animales a dioses y El temor de un hombre sabio: Año: 2011
