@@ -1,20 +1,43 @@
-# PROYECTO ALGORITMOS Y ESTRUCTURA DE DATOS
+# 📚 Sistema de Gestión de Biblioteca
 
-+ Juan David Jimenez Lopez
- 
+Aplicación desarrollada en Python para administrar una biblioteca mediante estructuras de datos y algoritmos. El sistema permite registrar, buscar, actualizar y eliminar libros, utilizando Programación Orientada a Objetos y diferentes estructuras como árboles y grafos.
 
-## Reto: 
-Sistema de gestion de biblioteca, crear un sistema de gestion que permita realizar operaciones de busqueda, ordenamiento, insercion, eliminacion y visualizacion de libros.
+## Características
 
-### Requisitos:
+- Gestión completa de libros
+- Búsqueda eficiente
+- Organización mediante árboles
+- Representación mediante grafos
+- Persistencia de datos en JSON
+- Registro de eventos mediante logs
+- Interfaz gráfica
 
-+ Crear estructura de datos para almacenar informacion de libros (Titulo, autor, genero, anio publicacion, entre otros.)
-+ Implementar un arbol binario de busqueda para almacenar los libros por titulo.
-+ Implementar un arbol n-ario para almacenar los libros por generos. 
-+ Implementar un arbol balanceado para almacenar los libros por anio de publicacion. 
-+ Implementar un algoritmo de busqueda para encontrar libros por titulo o autor o genero o anio de publicacion.
-+ Implementar algoritmos de ordenamiento para ordenar los libros por titulo, autor, genero, anio de publicacion, entre otros. 
-+ Crear un grafo, para representar las relaciones entre libros (autor, genero, etc.)
-+ Crear interfaz grafica para interactuar con el sistema. 
-+ Implementar una estructura de diccionario en el sistema.
+## Tecnologías
 
+- Python
+- Tkinter
+- JSON
+- Programación Orientada a Objetos
+- Árboles Binarios
+- Grafos
+
+## Estructura del proyecto
+
+```
+BibliotecaGUI.py
+GestionBiblioteca.py
+Libro.py
+Arboles.py
+grafo.py
+biblioteca.json
+```
+
+## Cómo ejecutar
+
+```bash
+python BibliotecaGUI.py
+```
+
+## Autor
+
+Juan David Jiménez
