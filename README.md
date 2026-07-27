@@ -1,10 +1,7 @@
 # PROYECTO ALGORITMOS Y ESTRUCTURA DE DATOS
 
-#### Integrantes: 
-
-+ Brayan Presiga Sepulveda
 + Juan David Jimenez Lopez
-+ Sergio Eduardo Socha Mendoza 
+ 
 
 ## Reto: 
 Sistema de gestion de biblioteca, crear un sistema de gestion que permita realizar operaciones de busqueda, ordenamiento, insercion, eliminacion y visualizacion de libros.
